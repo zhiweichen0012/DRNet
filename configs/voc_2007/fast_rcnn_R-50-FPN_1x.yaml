@@ -1,0 +1,48 @@
+MODEL:
+  TYPE: generalized_rcnn
+  CONV_BODY: FPN.add_fpn_ResNet50_conv5_body
+  NUM_CLASSES: 21
+NUM_GPUS: 4
+SOLVER:
+  WEIGHT_DECAY: 0.0001
+  LR_POLICY: steps_with_decay
+  BASE_LR: 0.01
+  GAMMA: 0.1
+  MAX_ITER: 36000
+  STEPS: [0, 24000, 32000]
+FPN:
+  FPN_ON: True
+  MULTILEVEL_ROIS: True
+  MULTILEVEL_RPN: True
+FAST_RCNN:
+  ROI_BOX_HEAD: fast_rcnn_heads.add_roi_2mlp_head
+  ROI_XFORM_METHOD: RoIAlign
+  ROI_XFORM_RESOLUTION: 7
+  ROI_XFORM_SAMPLING_RATIO: 2
+TRAIN:
+  WEIGHTS: https://s3-us-west-2.amazonaws.com/detectron/ImageNetPretrained/MSRA/R-50.pkl
+  DATASETS: ('voc_2007_train', 'voc_2007_val')
+<<<<<<< HEAD
+  PROPOSAL_FILES: ('detectron/datasets/data/mcg_voc_2007_train.pkl', 'detectron/datasets/data/mcg_voc_2007_val.pkl')
+=======
+  PROPOSAL_FILES: ('detectron/datasets/data/proposal/mcg_voc_2007_train.pkl', 'detectron/datasets/data/proposal/mcg_voc_2007_val.pkl')
+>>>>>>> ecf649754cb7431cdd0f6855abdb75fd36eb88ed
+  SCALES: (800,)
+  MAX_SIZE: 1333
+  BATCH_SIZE_PER_IM: 512
+TEST:
+  DATASETS: ('voc_2007_test',)
+<<<<<<< HEAD
+  PROPOSAL_FILES: ('detectron/datasets/data/mcg_voc_2007_test.pkl',)
+=======
+  PROPOSAL_FILES: ('detectron/datasets/data/proposal/mcg_voc_2007_test.pkl',)
+>>>>>>> ecf649754cb7431cdd0f6855abdb75fd36eb88ed
+  PROPOSAL_LIMIT: 1000
+  SCALE: 800
+  MAX_SIZE: 1333
+  NMS: 0.5
+OUTPUT_DIR: .
+<<<<<<< HEAD
+
+=======
+>>>>>>> ecf649754cb7431cdd0f6855abdb75fd36eb88ed

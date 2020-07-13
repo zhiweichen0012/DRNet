@@ -1,0 +1,16 @@
+numpy>=1.13
+pyyaml==3.12
+matplotlib
+opencv-python>=3.2
+setuptools
+Cython
+mock
+scipy
+six
+future
+protobuf
+networkx
+<<<<<<< HEAD
+=======
+easydict
+>>>>>>> ecf649754cb7431cdd0f6855abdb75fd36eb88ed

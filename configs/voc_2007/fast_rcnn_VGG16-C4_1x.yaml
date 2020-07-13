@@ -1,0 +1,65 @@
+MODEL:
+  TYPE: generalized_rcnn
+  CONV_BODY: VGG16.add_VGG16_conv5_body_origin
+  NUM_CLASSES: 21
+NUM_GPUS: 1
+SOLVER:
+  WEIGHT_DECAY: 0.0005
+  LR_POLICY: steps_with_decay
+  BASE_LR: 0.001
+  GAMMA: 0.1
+  # 1x schedule (note TRAIN.IMS_PER_BATCH: 1)
+  MAX_ITER: 40000
+  STEPS: [0, 30000]
+RPN:
+  SIZES: (32, 64, 128, 256, 512)
+FAST_RCNN:
+  ROI_BOX_HEAD: VGG16.add_VGG16_roi_fc_head
+  #ROI_XFORM_METHOD: RoIAlign
+  ROI_XFORM_METHOD: RoIPoolF
+TRAIN:
+<<<<<<< HEAD
+  WEIGHTS: /home/chenzhiwei/Dataset/model/VGG_ILSVRC_16_layers.pkl
+  DATASETS: ('voc_2007_train', 'voc_2007_val')
+  PROPOSAL_FILES: ('detectron/datasets/data/mcg_voc_2007_train.pkl', 'detectron/datasets/data/mcg_voc_2007_val.pkl')
+=======
+  WEIGHTS: model/VGG/VGG_ILSVRC_16_layers_v1.pkl
+  DATASETS: ('voc_2007_train', 'voc_2007_val')
+  PROPOSAL_FILES: ('detectron/datasets/data/proposal/mcg_voc_2007_train.pkl', 'detectron/datasets/data/proposal/mcg_voc_2007_val.pkl')
+>>>>>>> ecf649754cb7431cdd0f6855abdb75fd36eb88ed
+  SCALES: (600,)
+  MAX_SIZE: 1000
+  IMS_PER_BATCH: 2
+  BATCH_SIZE_PER_IM: 128
+  BG_THRESH_LO: 0.1
+  FREEZE_AT: 2
+TEST:
+  DATASETS: ('voc_2007_test',)
+<<<<<<< HEAD
+  PROPOSAL_FILES: ('detectron/datasets/data/mcg_voc_2007_test.pkl',)
+  PROPOSAL_LIMIT: 9999
+  SCALE: 600
+  MAX_SIZE: 1000
+  # NMS: 0.5
+  NMS: 0.3
+  BBOX_AUG:
+    ENABLED: True
+    SCORE_HEUR: 'SUM'
+    COORD_HEUR: 'ID'
+    H_FLIP: True
+    SCALES: (480, 576, 864, 1200)
+    MAX_SIZE: 2000
+    SCALE_H_FLIP: True
+OUTPUT_DIR: .
+USE_PSEUDO: True
+PSEUDO_PATH: ('experiments/csc/db2.3/test/voc_2007_train/generalized_wsl/detections.pkl','experiments/csc/db2.3/test/voc_2007_val/generalized_wsl/detections.pkl')
+=======
+  PROPOSAL_FILES: ('detectron/datasets/data/proposal/mcg_voc_2007_test.pkl',)
+  PROPOSAL_LIMIT: 9999
+  SCALE: 600
+  MAX_SIZE: 1000
+  NMS: 0.3
+OUTPUT_DIR: .
+USE_PSEUDO: True
+PSEUDO_PATH: ('experiments/wsl_mask_rcnn_vgg16_voc2007_2018-11-13_16-04-41/test/voc_2007_train/generalized_wsl/detections.pkl','experiments/wsl_mask_rcnn_vgg16_voc2007_2018-11-13_16-04-41/test/voc_2007_val/generalized_wsl/detections.pkl')
+>>>>>>> ecf649754cb7431cdd0f6855abdb75fd36eb88ed
